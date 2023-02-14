@@ -13,7 +13,10 @@ return new class extends Migration
     {
         Schema::create('reports', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('sale_id');
             $table->timestamps();
+
+            $table->foreign('sale_id')->references('id')->on('sales');
         });
     }
 

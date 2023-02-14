@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('description', 1000);
-            $table->integer('code')->random_int(1000,99999);
+            $table->integer('code')->random_int(1,9999);
             $table->float('price')->unsigned();
             $table->integer('stock')->unsigned();
             $table->string('status')->default('unavailable');
