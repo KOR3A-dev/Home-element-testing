@@ -18,4 +18,9 @@ class Product extends Model
         'stock',
         'status',
     ];
+
+    public function order()
+    {
+        return $this->belongsTo(Order::class);
+    }
 }
