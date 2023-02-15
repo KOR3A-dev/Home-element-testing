@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from '../services/login.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 interface responseToken {
   token?: string;
@@ -14,7 +15,7 @@ interface responseToken {
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private loginService:LoginService, private router:Router) { }
+  constructor(private _snackBar: MatSnackBar,private loginService:LoginService, private router:Router) { }
 
   login = new FormGroup({
     email : new FormControl('', Validators.required),
@@ -24,14 +25,18 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action);
+  }
+
   submit() {
     if (this.login.valid) {
       this.loginService.login(this.login.value).subscribe((response:responseToken) =>{
-       if (response) {
-        this.loginService.setIsLoggedIn(true)
-        localStorage.setItem('aut',JSON.stringify(response.token))
-        this.router.navigate(['/'])
-       }
+        if (response) {
+          localStorage.setItem('aut',JSON.stringify(response.token))
+          this.openSnackBar("¡Bienvenido!", "Ok");
+          this.router.navigate(['/'])
+        }
       })
     }
   }

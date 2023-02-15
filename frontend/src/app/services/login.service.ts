@@ -7,9 +7,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class LoginService {
 
-  isLoggedIn : boolean = false;
-  isRegisterIn : boolean = false;
-
   constructor(private http:HttpClient){ }
 
   login(payload: any) {
@@ -36,22 +33,6 @@ export class LoginService {
       'Authorization': `Bearer ${token}`
     })
     return this.http.post(apiUrl, { headers:headers });
-  }
-
-  /* Login */
-  setIsLoggedIn(isLoggedIn: boolean) {
-    this.isLoggedIn = isLoggedIn
-  }
-  getIsLoggedIn() {
-    return this.isLoggedIn
-  }
-
-  /* Register */
-  setIsRegisterIn(isRegisterIn: boolean) {
-    this.isRegisterIn = isRegisterIn
-  }
-  getIsRegisterIn() {
-    return this.isRegisterIn
   }
 
 }

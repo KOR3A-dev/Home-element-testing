@@ -9,33 +9,9 @@ import { LoginService } from './services/login.service';
 })
 export class AppComponent implements OnInit {
 
-  isLoggedIn: boolean = true
-  isRegisterIn: boolean = true
-  token = localStorage.getItem('aut')
-
-  constructor(private router:Router,private loginService:LoginService) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.isLoggedIn = this.loginService.getIsLoggedIn()
-    this.isRegisterIn = this.loginService.getIsRegisterIn()
-  }
-
-  logoutJwt(){
-    this.loginService.logout(this.token?.replace(/['"]+/g, '')).subscribe((response) =>{
-      if (response) {
-        console.log("Succesfully")
-      }
-    })
-    localStorage.clear()
-    this.router.navigate(['']);
-  }
-
-  login(){
-    this.router.navigate(['login'])
-  }
-
-  register(){
-    this.router.navigate(['register'])
   }
 
 }
