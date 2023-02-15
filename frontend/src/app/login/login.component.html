@@ -1,0 +1,16 @@
+<section class="text-center" >
+  <mat-card>
+    <form [formGroup]="login" (ngSubmit)="Login()">
+      <mat-form-field appearance="fill" class="example-full-width  ">
+        <input  placeholder="Ex. pat@example.com"  formControlName="email"type="email" id="email" matInput>
+      </mat-form-field> <br>
+      <mat-form-field appearance="fill" class="example-full-width  ">
+        <input  placeholder="*******" formControlName="password" id="password"  type="password" matInput>
+      </mat-form-field> <br>
+      <button mat-fab  color="primary" aria-label="Example icon button with a heart icon">
+        crear
+      </button><br>
+      <a routerLink="register">register</a>
+    </form>
+  </mat-card>
+</section>
