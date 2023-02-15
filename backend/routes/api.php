@@ -13,9 +13,10 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+
 Route::middleware('auth:api')->group(function () {
-    Route::get('/products', [ProductController::class, 'findAll']);
-    Route::get('/login', [LoginController::class, 'login']);
+    Route::get('/products', 'App\Http\Controllers\ProductController@findAll');
 });
 
+Route::post('/login', 'App\Http\Controllers\Auth\LoginController@login');
 Route::post('register', 'App\Http\Controllers\Auth\RegisterController@create');

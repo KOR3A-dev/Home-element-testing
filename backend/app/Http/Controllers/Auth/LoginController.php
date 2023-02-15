@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 
@@ -43,12 +44,18 @@ class LoginController extends Controller
     {
         $credentials = $request->only('email', 'password');
 
-        if (Auth::attempt($credentials)) {
-            // Autenticación exitosa
-            return response()->json(['message' => 'Inicio de sesión exitoso']);
+        if (auth()->attempt($credentials)) {
+            $user = $request->user();
+            $token = $user->createToken('MyApp')->plainTextToken;
+
+            return response()->json([
+                'message' => 'Login successful',
+                'token' => $token,
+            ]);
         } else {
-            // Error de autenticación
-            return response()->json(['message' => 'Credenciales inválidas'], 401);
+            return response()->json([
+                'message' => 'Invalid credentials',
+            ], 401);
         }
     }
 
