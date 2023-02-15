@@ -1,4 +1,20 @@
-<h2> How to install laravel correctly </h2>
+# ¡Despliega!
 
-#Run ´composer install´
-followed by  ´php artisan key:generate´ too ´php artisan jwt:secret´ now create the database and name it correctly in the .env file ´php artisan migrate´ now activate the sedders ´php artisan db:seed --class=ProductSeeder´ and ´php artisan db:seed --class=UserSeeder´ with this configuration you can now run ´php artisan serve´
+Run composer
+
+    $ composer install
+    $ php artisan key:generate
+    $ php artisan jwt:secret
+   
+    
+## Now create the database and name it correctly in the .env file
+    $ php artisan migrate
+        
+## Now run the fake data to interact 
+
+    $ php artisan db:seed --class=ProductSeeder
+    $ php artisan db:seed --class=UserSeeder
+    
+## ¡With this configuration you can now run!
+    
+    $ php artisan serve
