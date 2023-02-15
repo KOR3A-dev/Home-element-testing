@@ -15,7 +15,9 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->integer('quantity')->unsigned();
+            $table->integer('quantity_products')->unsigned();
+            $table->string('order_code')->unique();
+            $table->float('total_purchase')->default(0);
             $table->string('status')->default('pending');
             $table->unsignedBigInteger('customer_id');
             $table->unsignedBigInteger('product_id');

@@ -15,10 +15,14 @@ return new class extends Migration
     {
         Schema::create('sales', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('invoice_id');
+            $table->string('invoice_code');
+            $table->float('total_price');
+            $table->json('customer');
+            $table->json('product');
+            $table->integer('quantity');
             $table->timestamps();
 
-            $table->foreign('invoice_id')->references('id')->on('invoices')->onDelete('cascade');
+            $table->foreign('invoice_code')->references('invoice_code')->on('invoices')->onDelete('cascade');
         });
     }
 

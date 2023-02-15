@@ -1,3 +1,5 @@
+
+<h2 class="text-center">Login</h2>
 <section class="text-center" >
   <mat-card>
     <form [formGroup]="login" (ngSubmit)="Login()">
@@ -8,9 +10,8 @@
         <input  placeholder="*******" formControlName="password" id="password"  type="password" matInput>
       </mat-form-field> <br>
       <button mat-fab  color="primary" aria-label="Example icon button with a heart icon">
-        crear
+        Login
       </button><br>
-      <a routerLink="register">register</a>
     </form>
   </mat-card>
 </section>
