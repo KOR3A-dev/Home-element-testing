@@ -15,6 +15,10 @@ return new class extends Migration
     {
         Schema::create('reports', function (Blueprint $table) {
             $table->id();
+            $table->integer('classification');
+            $table->string('client');
+            $table->string('product');
+            $table->float('total');
             $table->unsignedBigInteger('sale_id');
             $table->timestamps();
 

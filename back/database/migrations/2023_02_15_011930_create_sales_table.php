@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('sales', function (Blueprint $table) {
             $table->id();
+            $table->string('sale_code')->unique();
             $table->string('invoice_code');
             $table->float('total_price');
             $table->json('customer');

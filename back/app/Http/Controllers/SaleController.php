@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+
 use App\Models\Invoice;
 use App\Models\Order;
 use App\Models\User;
@@ -24,6 +26,7 @@ class SaleController extends Controller
         $productData = Product::findOrFail($order->product_id);
         $customer = User::where('id', $order->customer_id)->first();
         $sale = new Sale;
+        $sale->sale_code = 'SL-' . Str::random(32);
         $sale->invoice_code = $invoice->invoice_code;
         $sale->total_price = $order->total_purchase;
         $sale->customer = $customer;
@@ -33,4 +36,14 @@ class SaleController extends Controller
 
         return response()->json(compact('sale'),201);
     }
+
+    public function findSale($sale_code)
+    {
+        $sale = Sale::where('sale_code', $sale_code)->first();
+        if (!$sale) {
+            return response()->json(['message' => 'El codigo de venta no existe'], 404);
+        }
+        return response()->json(compact('sale'),200);
+    }
 }
+

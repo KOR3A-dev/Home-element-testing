@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+
 use App\Models\Payment;
 use App\Models\Invoice;
 use App\Models\Order;
+use App\Models\User;
 use App\Models\Product;
 
 class InvoiceController extends Controller
@@ -14,6 +16,8 @@ class InvoiceController extends Controller
     public function generateInvoice($orderCode)
     {
         $payment = Payment::where('order_code', $orderCode)->first();
+        $order =  Order::where('order_code', $orderCode)->first();
+
         if (!$payment) {
             throw new Exception('No se encontró un pago para la orden especificada');
         }
@@ -23,6 +27,10 @@ class InvoiceController extends Controller
         $invoice->order_code = $orderCode;
         $invoice->invoice_code = $invoiceCode;
         $invoice->save();
+
+        $user = User::where('id', $order->customer_id)->first();
+        $user->number_purchases += 1;
+        $user->save();
 
         return response()->json([
             'message' => 'Invoice saved successfully',

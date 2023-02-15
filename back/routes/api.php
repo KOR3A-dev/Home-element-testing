@@ -42,11 +42,12 @@ Route::controller(InvoiceController::class)->group(function () {
 
 Route::controller(SaleController::class)->group(function () {
     Route::post('create/sale/{invoice_code}', 'saveSalesRecord')->middleware('jwt.auth');
-    Route::get('sale/{invoice_code}', 'findSalesRecord')->middleware('jwt.auth');
+    Route::get('sale/{sale_code}', 'findSale')->middleware('jwt.auth');
 });
 
 Route::controller(ReportController::class)->group(function () {
-    Route::post('create/report/{sale_id}', 'saveSalesRecord')->middleware('jwt.auth');
-    Route::get('sale/{id}', 'findSalesRecord')->middleware('jwt.auth');
+    Route::post('create/report/{month}', 'analyzeMonth')->middleware('jwt.auth');
+    Route::get('report/{user_id}/{id}', 'findReportForUser')->middleware('jwt.auth');
+    Route::get('reports', 'allReports')->middleware('jwt.auth');
 });
 
