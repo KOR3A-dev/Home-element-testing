@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { LoginService } from '../services/login.service';
+
+interface responseToken {
+  token?: string;
+}
 
 @Component({
   selector: 'app-login',
@@ -8,16 +14,26 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
+  constructor(private loginService:LoginService, private router:Router) { }
+
   login = new FormGroup({
-    password : new FormControl('', Validators.required),
-    email : new FormControl('', Validators.required)
+    email : new FormControl('', Validators.required),
+    password : new FormControl('', Validators.required)
   });
 
   ngOnInit(): void {
   }
-  Login() {
-    console.log(this.login.value);
-  }
 
+  submit() {
+    if (this.login.valid) {
+      this.loginService.login(this.login.value).subscribe((response:responseToken) =>{
+       if (response) {
+        this.loginService.setIsLoggedIn(true)
+        localStorage.setItem('aut',JSON.stringify(response.token))
+        this.router.navigate(['/'])
+       }
+      })
+    }
+  }
 
 }

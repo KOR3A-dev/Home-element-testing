@@ -1,12 +1,13 @@
+<br>
 <h2 class="text-center">Register</h2>
 <section class="text-center" >
   <mat-card>
-    <form [formGroup]="create" (ngSubmit)="createuser()">
+    <form [formGroup]="formRegister" (ngSubmit)="submit()">
       <mat-form-field appearance="fill" class="example-full-width  ">
-        <input placeholder="name" formControlName="username" id="username" type="text" matInput>
+        <input placeholder="name" formControlName="name" id="name" type="text" matInput>
       </mat-form-field> <br>
       <mat-form-field appearance="fill" class="example-full-width  ">
-        <input  placeholder="Ex. pat@example.com"  formControlName="email"type="email" id="email" matInput>
+        <input  placeholder="Ex. pat@example.com"  formControlName="email" type="email" id="email" matInput>
       </mat-form-field> <br>
       <mat-form-field appearance="fill" class="example-full-width  ">
         <input  placeholder="*******" formControlName="password" id="password"  type="password" matInput>

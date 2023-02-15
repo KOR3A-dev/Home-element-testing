@@ -1,9 +1,9 @@
-import { LoginComponent } from './../login/login.component';
-import { RegisterComponent } from './../register/register.component';
+import { Router } from '@angular/router';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { LoginService } from '../services/login.service';
 
 export interface productsElement {
   id:number
@@ -55,22 +55,20 @@ export class HomeComponent implements OnInit {
     'status':'status',
   }]
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, private router:Router, private loginService:LoginService) { }
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
-  registro(){
-    this.dialog.open(RegisterComponent, {
-      width: '450px',
-    });
-  }
+
   login(){
-    this.dialog.open(LoginComponent, {
-      width: '450px',
-    });
+    this.router.navigate(['login']);
+  }
+
+  register(){
+    this.router.navigate(['register']);
   }
   ngOnInit(): void {
   }

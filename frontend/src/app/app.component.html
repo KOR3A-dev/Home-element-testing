@@ -1,1 +1,19 @@
+<mat-toolbar color="primary">
+  <span >Home</span>
+  <span class="example-spacer"></span>
+
+  <button *ngIf="isRegisterIn == true" (click)="register()"mat-button class="mx-2" >
+    registro
+  </button>
+  <button *ngIf="isLoggedIn == true else logout" (click)="login()"mat-button class="mx-2" >
+    login
+  </button>
+
+  <ng-template #logout>
+    <button (click)="logoutJwt()" mat-button class="mx-2" >
+      Log out
+    </button>
+  </ng-template>
+
+</mat-toolbar>
 <router-outlet></router-outlet>

@@ -1,16 +1,5 @@
-
-<mat-toolbar color="primary">
-  <span >Home</span>
-  <span class="example-spacer"></span>
-  <button (click)="registro()"mat-button class="mx-2" >
-    registro
-  </button>
-  <button (click)="login()"mat-button class="mx-2" >
-    login
-  </button>
-</mat-toolbar>
-<h1 class="text-center my-3">productos de nuestras tienda</h1>
-<div class="mat-elevation-z8">
+<h1 class="text-center my-3">Productos disponibles  en la tienda</h1>
+<div class="mat-elevation-z8 mx-4">
   <table mat-table [dataSource]="dataSource">
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef> No. </th>
