@@ -11,5 +11,4 @@ class ProductController extends Controller
         $products = Product::all();
         return response()->json(compact('products'),200);
     }
-
 }

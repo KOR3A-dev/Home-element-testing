@@ -14,9 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->group(function () {
-    Route::get('/products', 'App\Http\Controllers\ProductController@findAll');
-});
-
+Route::get('/products', 'App\Http\Controllers\ProductController@findAll')->middleware('auth');
 Route::post('/login', 'App\Http\Controllers\Auth\LoginController@login');
 Route::post('register', 'App\Http\Controllers\Auth\RegisterController@create');
