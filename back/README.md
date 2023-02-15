@@ -1,2 +1,2 @@
-How to Implement JWT Auth in Laravel 9
+How to install laravel correctly
 # laravel-jwt-with-todo
